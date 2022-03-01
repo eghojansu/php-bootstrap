@@ -20,7 +20,7 @@ function load(string $template, array $data = null): string
     $fw = fw();
 
     $data['fw'] = $fw;
-    $data['fun'] = $fw->box;
+    $data['fun'] = $fw->getBox();
 
     return $fw->load($template, $data);
 }
@@ -38,29 +38,29 @@ function render(string $template, array $data = null, string $layout = null): st
 }
 
 function script_add(string ...$scripts): void {
-    fw()->box->push('scripts', ...$scripts);
+    fw()->getBox()->push('scripts', ...$scripts);
 }
 
 function module_add(string ...$modules): void {
-    fw()->box->push('modules', ...$modules);
+    fw()->getBox()->push('modules', ...$modules);
 }
 
 function style_add(string ...$styles): void {
-    fw()->box->push('styles', ...$styles);
+    fw()->getBox()->push('styles', ...$styles);
 }
 
 function scripts(): array {
-    return fw()->box->scripts ?? array();
+    return fw()->getBox()->scripts ?? array();
 }
 
 function modules(): array {
-    return fw()->box->modules ?? array();
+    return fw()->getBox()->modules ?? array();
 }
 
 function styles(): array {
-    return fw()->box->styles ?? array();
+    return fw()->getBox()->styles ?? array();
 }
 
 function menu_active(string $path): void {
-    fw()->box->menu_active = '/' . ltrim($path, '/');
+    fw()->getBox()->menu_active = '/' . ltrim($path, '/');
 }
